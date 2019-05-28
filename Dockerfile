@@ -1,8 +1,11 @@
-FROM node:7.7.2-alpine
+FROM node:8
 
-WORKDIR /usr/app
+COPY package.json /usr/src/app/
 
-COPY package.json .
-RUN npm install --quiet
+WORKDIR /usr/src/app/
 
-COPY . .
+RUN npm install
+
+EXPOSE 8080
+
+CMD [ "npm", "run", "nodemon" ]
